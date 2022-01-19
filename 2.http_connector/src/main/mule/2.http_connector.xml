@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="2.basics" doc:id="4fe07c51-0814-417c-bd1a-98eea5d52886" >
+		<http:listener doc:name="HTTP GET" doc:id="4ed5a592-1d84-4f23-a419-37389a152093" config-ref="HTTP_Listener_config" path="/basics/*" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Log START" doc:id="a4dc0ff9-769a-42e1-bba2-24ef0213582c" message='#["log START - " ++ flow.name]'/>
+		<set-payload value='#["this is the basic flow payload"]' doc:name="Set Payload" doc:id="4dd81f07-fe47-4d52-8fe3-0df2888df15d" />
+	</flow>
+	<flow name="queryParams" doc:id="cfd4ddde-2a4e-4b3e-b512-9e7869ae2fbe" >
+		<http:listener doc:name="HTTP GET" doc:id="2a14a922-d18e-4724-b7c2-36e97d04fee3" config-ref="HTTP_Listener_config" path="/queryParams" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Log START" doc:id="b65d87d1-15df-40e5-8bd6-33b119cf635b" message='#["Log START - " ++ flow.name]'/>
+		<set-payload value="#[%dw 2.0&#10;&#10;output application/json&#10;&#10;---&#10;&#10;attributes.queryParams&#10;// if you want just one parameter returned&#10;//attributes.queryParams.ID]" doc:name="Set Payload" doc:id="443b93a4-aa32-4208-9e9f-4bd519ff9304" />
+	</flow>
+	<flow name="uriParams" doc:id="e8974450-777c-4bf1-a4dc-d402a9a9a042" >
+		<http:listener doc:name="HTTP GET" doc:id="f7662d54-018c-4706-8739-047caa4e6f0c" config-ref="HTTP_Listener_config" path="/uriParams/{ID}" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Log START" doc:id="e7515b6d-5beb-49a3-996a-c8fb63cb1df2" message='#["log START - " ++ flow.name]' />
+		<set-payload value='#[attributes.uriParams."ID"]' doc:name="Set Payload" doc:id="85807791-acf7-4571-acc5-217de654d10b" />
+	</flow>
+</mule>

@@ -1,0 +1,22 @@
+{
+ "people" : {
+ 	"person" : {
+ 		"name" : "Lorenzo",
+ 		"age" : 45,
+ 		"address" : {
+ 			"address1" : "Street 1",
+ 			"address2" : "Street 2"
+ 		} 
+ 	},
+ 	"person2" : {
+ 		"name" : "Manuel",
+ 		"age" : 41,
+ 		"address" : {
+ 			"address1" : "Street 1",
+ 			"address2" : "Street 2"
+ 		} 
+ 	}
+ 	
+ }
+
+}
